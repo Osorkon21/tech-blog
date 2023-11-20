@@ -1,0 +1,21 @@
+:root {
+  --main-bg-color: rgb(202, 222, 202);
+  --main-color: #371D10;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+.link-bar {
+  background-color: var(--main-color);
+}
+
+.link-light:hover {
+  color: blue !important;
+}
+
+.decorative-title {
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
+}
