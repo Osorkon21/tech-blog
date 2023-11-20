@@ -1,13 +1,17 @@
-{{#each articles as |article|}}
-  <div class="article">
-    <div class="top-bar d-flex justify-content-between">
-      <div class="article-title h4">
+{{#each dummyData.articles as |article|}}
+  <div class="article m-4">
+    <div class="top-bar d-flex justify-content-between align-items-center p-2">
+      <div class="article-title fw-bold fs-3">
         {{title}}
       </div>
 
       <div class="article-metadata">
         {{format_metadata metadata}}
       </div>
+    </div>
+
+    <div class="article-content fs-5 p-3">
+      {{content}}
     </div>
   </div>
 {{/each}}

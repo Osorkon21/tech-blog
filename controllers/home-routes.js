@@ -5,7 +5,18 @@ const { User, Article, Comment } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
-    res.render("home");
+    const dummyData = {
+      articles: [{
+        title: "A Great Title",
+        content: "What a wonderful piece of content this is! It might be the greatest content of all time.",
+        metadata: {
+          user: "A Great User",
+          date: new Date()
+        }
+      }]
+    };
+
+    res.render("home", { dummyData, loggedIn: true });
   }
   catch (err) {
     console.error(err);

@@ -21,7 +21,14 @@ body {
 }
 
 .article {
-  border: 3px solid var(--main-color);
+  border-left: 5px solid var(--main-color);
+  border-right: 5px solid var(--main-color);
+  border-bottom: 5px solid var(--main-color);
+}
+
+.article-title,
+.article-metadata {
+  color: white;
 }
 
 /* css for an always-visible-and-displayed box in center of screen? */
