@@ -1,0 +1,13 @@
+{{#each articles as |article|}}
+  <div class="article">
+    <div class="top-bar d-flex justify-content-between">
+      <div class="article-title h4">
+        {{title}}
+      </div>
+
+      <div class="article-metadata">
+        {{format_metadata metadata}}
+      </div>
+    </div>
+  </div>
+{{/each}}

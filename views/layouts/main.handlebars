@@ -12,12 +12,12 @@
 
   <body>
     <header>
-      <div class="link-bar p-4">
+      <div class="top-bar p-4 mb-3">
         <div class="nav-links">
           <a class="text-decoration-none me-5 link-light h5" href="/">Home</a>
           <a class="text-decoration-none me-5 link-light h5" href="/dashboard">Dashboard</a>
           {{#if loggedIn}}
-            <a class="text-decoration-none me-5 link-light h5" href="/logout">Logout</a>
+            <button id="logout" class="btn btn-danger">Logout</button>
           {{else}}
             <a class="text-decoration-none link-light h5" href="/login">Login</a>
           {{/if}}
@@ -27,11 +27,17 @@
           The Tech Blog
         </div>
       </div>
-
     </header>
-    <h1>Add top bar with nav links here</h1>
 
     {{{body}}}
+
+    {{#if articles}}
+      <script href="/js/main.js"></script>
+    {{/if}}
+
+    {{#if loggedIn}}
+      <script href="/js/logout.js"></script>
+    {{/if}}
   </body>
 
 </html>
