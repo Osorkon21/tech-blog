@@ -1,0 +1,24 @@
+<div class="login-card m-4">
+  <h2 class="top-bar p-2 fw-bold fs-3 text-light">Login</h2>
+  <form class="form login-form px-3 pt-3">
+    <div class="form-group">
+      <label for="username-login">Username:</label>
+      <input class="form-control" type="text" placeholder="username" id="username-login" />
+    </div>
+    <div class="form-group">
+      <label for="password-login" class="form-label">Password:</label>
+      <input type="password" id="password-login" class="form-control" placeholder="password"
+        aria-describedby="passwordHelpBlock">
+      <div id="passwordHelpBlock" class="form-text">
+        Your password is at least 8 characters long.
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success mt-3 w-100" type="submit">Login!</button>
+    </div>
+  </form>
+
+  <a href="/signup" class="p-3">Sign up instead!</a>
+</div>
+
+<script src="/js/login.js"></script>
