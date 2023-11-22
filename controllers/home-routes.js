@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const { User, Article, Comment } = require("../models");
 
-// write handlebars HTML? Or write routes?
-
+// homepage route
 router.get("/", async (req, res) => {
   try {
     const dummyData = {
@@ -37,10 +36,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/dashboard", (req, res) => {
+  // get all user generated articles here...
+
+  res.render("dashboard", { dashboard: true, loggedIn: req.session.loggedIn })
+})
+
+// login route
 router.get("/login", (req, res) => {
   res.render("login", { loggedIn: req.session.loggedIn });
 });
 
+// signup route
 router.get("/signup", (req, res) => {
   res.render("signup", { loggedIn: req.session.loggedIn });
 });

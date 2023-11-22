@@ -13,8 +13,8 @@ const signupFormHandler = async (e) => {
 
     if (response.ok) {
 
-      // go to home page after signing up
-      document.location.replace('/');
+      // go to user dashboard after signing up
+      document.location.replace('/dashboard');
     } else {
       alert('Failed to sign up.');
     }

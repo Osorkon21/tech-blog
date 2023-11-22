@@ -13,10 +13,10 @@ const onBtnClick = async (e) => {
 
     if (response.ok) {
 
-      // go to home page after logging in
-      document.location.replace('/');
+      // go to user dashboard after logging in
+      document.location.replace('/dashboard');
     } else {
-      alert('Failed to log in - incorrect email or password.');
+      alert('Failed to log in - incorrect username or password.');
     }
   }
 };

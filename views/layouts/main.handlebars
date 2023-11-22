@@ -10,13 +10,14 @@
     <link href="/css/style.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body class="mb-5">
     <header>
       <div class="top-bar p-4 mb-3">
         <div class="nav-links">
           <a class="text-decoration-none me-5 link-light h5" href="/">Home</a>
-          <a class="text-decoration-none me-5 link-light h5" href="/dashboard">Dashboard</a>
+
           {{#if loggedIn}}
+            <a class="text-decoration-none me-5 link-light h5" href="/dashboard">Dashboard</a>
             <button id="logout" class="btn btn-danger">Logout</button>
           {{else}}
             <a class="text-decoration-none link-light h5" href="/login">Login</a>
@@ -24,19 +25,23 @@
         </div>
 
         <div class="decorative-title border rounded-3 p-1 h4 fw-bold d-inline-flex mt-4 px-3">
-          The Tech Blog
+          {{#if dashboard}}
+            Your Dashboard
+          {{else}}
+            The Tech Blog
+          {{/if}}
         </div>
       </div>
     </header>
 
     {{{body}}}
 
-    {{#if dummyData.articles}}
-      <script src="/js/main.js"></script>
-    {{/if}}
-
     {{#if loggedIn}}
       <script src="/js/logout.js"></script>
+    {{/if}}
+
+    {{#if dummyData.articles}}
+      <script src="/js/main.js"></script>
     {{/if}}
   </body>
 

@@ -37,6 +37,19 @@ body {
   color: white;
 }
 
+#new-post-btn {
+  color: white;
+  background-color: var(--main-color);
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5px;
+}
+
+#new-post-btn:hover {
+  opacity: 0.85;
+}
+
 /* css for an always-visible-and-displayed box in center of screen? */
 /* display: none;
 position: absolute;
