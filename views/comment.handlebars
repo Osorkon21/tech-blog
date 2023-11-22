@@ -1,0 +1,38 @@
+<div class="comment-article m-4">
+  <div class="top-bar d-flex justify-content-between align-items-center p-2">
+    <div class="article-title fw-bold fs-3">
+      {{article.title}}
+    </div>
+
+    <div class="article-metadata">
+      {{format_metadata article.metadata}}
+    </div>
+  </div>
+
+  <div class="article-content fs-5 p-3">
+    {{article.content}}
+  </div>
+</div>
+
+{{!-- put an {{#each}} for comments here --}}
+
+<div class="comment mx-4">
+  <div class="top-bar p-2">
+    <div class="comment-title fw-bold fs-3">Add Your Comment</div>
+  </div>
+
+  <div class="comment-container p-3">
+    <textarea class="form-control comment-text" id="{{article.id}}" rows="3" placeholder="your comment here"></textarea>
+  </div>
+
+  <div class="button-div px-3">
+    <button class="btn btn-success w-100" id="submit-btn">Submit Comment</button>
+
+    <a href="/">
+      <button class="btn btn-danger my-2 w-100">Cancel</button>
+    </a>
+  </div>
+
+</div>
+
+<script src="/js/comment.js"></script>
