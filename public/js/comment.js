@@ -4,9 +4,6 @@ const submitCommentHandler = async (e) => {
   const articleId = textAreaEl.getAttribute("id");
 
   if (commentText && articleId) {
-    console.log(commentText);
-    console.log(articleId);
-
     const response = await fetch('/api/comment', {
       method: 'POST',
       body: JSON.stringify({ commentText, articleId }),
@@ -19,6 +16,8 @@ const submitCommentHandler = async (e) => {
       alert('Failed to save comment.');
     }
   }
+  else
+    alert("Your comment cannot be empty.");
 };
 
 document.querySelector('#submit-btn').addEventListener('click', submitCommentHandler);

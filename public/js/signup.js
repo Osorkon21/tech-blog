@@ -19,6 +19,8 @@ const signupFormHandler = async (e) => {
       alert('Failed to sign up.');
     }
   }
+  else
+    alert("Username and Password are required fields.");
 };
 
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);

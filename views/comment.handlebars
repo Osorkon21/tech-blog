@@ -1,4 +1,4 @@
-<div class="comment-article m-4">
+<div class="comment-article mx-4 mt-4">
   <div class="top-bar d-flex justify-content-between align-items-center p-2">
     <div class="article-title fw-bold fs-3">
       {{article.title}}
@@ -14,9 +14,14 @@
   </div>
 </div>
 
-{{!-- put an {{#each}} for comments here --}}
+{{#each article.comments as |comment|}}
+  <div class="old-comment mt-2 mx-4">
+    <p class="ms-2 mt-3">{{content}}</p>
+    <p class="ms-4">- {{username}}, {{format_date date}}</p>
+  </div>
+{{/each}}
 
-<div class="comment mx-4">
+<div class="new-comment mx-4 mt-4">
   <div class="top-bar p-2">
     <div class="comment-title fw-bold fs-3">Add Your Comment</div>
   </div>
@@ -26,11 +31,9 @@
   </div>
 
   <div class="button-div px-3">
-    <button class="btn btn-success w-100" id="submit-btn">Submit Comment</button>
+    <button class="btn btn-success w-100" id="submit-btn">Add Comment!</button>
 
-    <a href="/">
-      <button class="btn btn-danger my-2 w-100">Cancel</button>
-    </a>
+    <a class="btn btn-danger my-2 w-100" href="/">Cancel</a>
   </div>
 
 </div>

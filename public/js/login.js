@@ -19,6 +19,8 @@ const onBtnClick = async (e) => {
       alert('Failed to log in - incorrect username or password.');
     }
   }
+  else
+    alert("Username and Password are required fields.");
 };
 
 document.querySelector('.login-form').addEventListener('submit', onBtnClick);

@@ -1,0 +1,26 @@
+<div class="newpost-btn-div d-flex justify-content-center">
+  <a href="/newpost" id="new-post-btn" class="btn fs-3">Add New Post</a>
+</div>
+
+<div class="newpost-card m-4">
+  <h2 class="top-bar p-2 fw-bold fs-3 text-light">Create New Post</h2>
+  <form class="form newpost-form px-3">
+    <div class="form-group">
+      <label for="newpost-title">Title:</label>
+      <input class="form-control" type="text" placeholder="title" id="newpost-title" />
+    </div>
+    <div class="form-group">
+      <label for="newpost-content" class="form-label">Content:</label>
+      <textarea class="form-control comment-text" rows="3" id="newpost-content"
+        placeholder="your content here"></textarea>
+
+      <div class="button-div">
+        <button class="btn btn-success mt-3 w-100" type="submit">Create Post!</button>
+
+        <a class="btn btn-danger my-2 w-100" href="/dashboard">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="/js/newpost.js"></script>
