@@ -1,0 +1,45 @@
+<div class="comment-article mx-4 mt-4">
+  <div class="top-bar d-flex justify-content-between align-items-center p-2">
+    <div class="article-title fw-bold fs-3">
+      {{article.title}}
+    </div>
+
+    <div class="article-metadata">
+      {{format_metadata article.User.username article.createdAt}}
+    </div>
+  </div>
+
+  <div class="article-content fs-5 p-3">
+    {{article.content}}
+  </div>
+</div>
+
+{{#each article.Comments as |comment|}}
+  <div class="old-comment mt-2 mx-4">
+    <p class="ms-2 mt-3">{{content}}</p>
+    <p class="ms-4">- {{User.username}}, {{format_date createdAt}}</p>
+  </div>
+{{/each}}
+
+{{!-- if user is not logged in, they can't post comments --}}
+{{#if loggedIn}}
+  <div class="new-comment mx-4 mt-4">
+    <div class="top-bar p-2">
+      <div class="comment-title fw-bold fs-3">Add Your Comment</div>
+    </div>
+
+    <div class="comment-container p-3">
+      <textarea class="form-control comment-text" id="{{article.id}}" rows="3"
+        placeholder="your comment here"></textarea>
+    </div>
+
+    <div class="button-div px-3">
+      <button class="btn btn-success w-100" id="submit-btn">Add Comment!</button>
+
+      <a class="btn btn-danger my-2 w-100" href="/">Cancel</a>
+    </div>
+
+  </div>
+
+  <script src="/js/comment.js"></script>
+{{/if}}

@@ -1,0 +1,19 @@
+{{#each articles as |article|}}
+  <div class="article m-4" data-id="{{id}}">
+    <div class="top-bar d-flex justify-content-between align-items-center p-2" data-id="{{id}}">
+      <div class="article-title fw-bold fs-3" data-id="{{id}}">
+        {{title}}
+      </div>
+
+      <div class="article-metadata" data-id="{{id}}">
+        {{format_metadata User.username createdAt}}
+      </div>
+    </div>
+
+    <div class="article-content fs-5 p-3" data-id="{{id}}">
+      {{content}}
+    </div>
+  </div>
+{{/each}}
+
+<script src="/js/home.js"></script>

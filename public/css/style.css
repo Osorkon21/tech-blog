@@ -1,0 +1,59 @@
+/* create color variables */
+:root {
+  --main-bg-color: rgb(202, 222, 202);
+  --main-color: #371D10;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+.top-bar {
+  background-color: var(--main-color);
+}
+
+.link-light:hover {
+
+  /* must be !important to override Bootstrap behavior */
+  color: blue !important;
+}
+
+.decorative-title {
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
+}
+
+.article,
+.new-comment,
+.login-card,
+.signup-card,
+.newpost-card,
+.editpost-card,
+.comment-article {
+  border-left: 5px solid var(--main-color);
+  border-right: 5px solid var(--main-color);
+  border-bottom: 5px solid var(--main-color);
+}
+
+.old-comment {
+  border: 5px solid var(--main-color);
+}
+
+.article {
+  cursor: pointer;
+}
+
+.article-title,
+.article-metadata,
+.comment-title {
+  color: white;
+}
+
+#new-post-btn {
+  color: white;
+  background-color: var(--main-color);
+}
+
+#new-post-btn:hover {
+  opacity: 0.85;
+}

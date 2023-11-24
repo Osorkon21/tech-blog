@@ -1,0 +1,24 @@
+<div class="signup-card m-4">
+  <h2 class="top-bar p-2 fw-bold fs-3 text-light">Sign Up</h2>
+  <form class="form signup-form px-3 pt-3">
+    <div class="form-group">
+      <label for="username-signup">Username:</label>
+      <input class="form-control" type="text" placeholder="username" id="username-signup" />
+    </div>
+    <div class="form-group">
+      <label for="password-signup" class="form-label">Password:</label>
+      <input type="password" id="password-signup" class="form-control" placeholder="password"
+        aria-describedby="passwordHelpBlock">
+      <div id="passwordHelpBlock" class="form-text">
+        Your password must be at least 8 characters long.
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success mt-3 w-100" type="submit">Sign Up!</button>
+    </div>
+  </form>
+
+  <a href="/login" class="p-3">Login instead!</a>
+</div>
+
+<script src="/js/signup.js"></script>

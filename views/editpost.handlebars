@@ -1,0 +1,29 @@
+<div class="newpost-btn-div d-flex justify-content-center">
+  <a href="/newpost" id="new-post-btn" class="btn fs-3">Add New Post</a>
+</div>
+
+<div class="editpost-card m-4">
+  <h2 class="top-bar p-2 fw-bold fs-3 text-light">Edit Post</h2>
+  <form class="form editpost-form px-3">
+    <div class="form-group">
+      <label for="editpost-title">Title:</label>
+      <input class="form-control" type="text" value="{{article.title}}" id="editpost-title" />
+    </div>
+    <div class="form-group">
+      <label for="editpost-content" class="form-label">Content:</label>
+      <textarea class="form-control comment-text" rows="3" id="editpost-content">{{article.content}}</textarea>
+
+      <div class="button-div">
+        <button class="btn btn-success mt-3 w-100" type="submit" id="update-btn" data-id="{{article.id}}">Update
+          Post!</button>
+
+        <button class="btn btn-danger mt-2 w-100" type="submit" id="delete-btn" data-id="{{article.id}}">Delete
+          Post</button>
+
+        <a class="btn btn-danger my-2 w-100" href="/dashboard">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="/js/editpost.js"></script>
