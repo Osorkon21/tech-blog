@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User, Article, Comment } = require("../models");
 
-//  /dashboard GET
 //  /article/:articleId/comment GET
 //  /article/:articleId/edit GET
 
@@ -18,7 +17,7 @@ router.get("/", async (req, res) => {
       ]
     });
 
-    // format dbArticleData into something that can be displayed
+    // format dbArticleData into something that can be easily displayed
     const articles = dbArticleData.map((article) => article.get({ plain: true }));
 
     res.render('home', { articles, loggedIn: req.session.loggedIn });
@@ -34,22 +33,23 @@ router.get("/dashboard", async (req, res) => {
     res.redirect("/login");
   }
   else {
-    const userArticles = {
-      articles: [
-        {
-          id: "0",
-          title: "A Great Title",
-          date: new Date()
-        },
-        {
-          id: "1",
-          title: "A Greater Title",
-          date: new Date()
+    try {
+      // get all User Articles
+      const dbUserArticleData = await Article.findAll({
+        where: {
+          user_id: req.session.userId
         }
-      ]
-    };
+      });
 
-    res.render("dashboard", { userArticles, dashboard: true, loggedIn: req.session.loggedIn });
+      // format dbUserArticleData into something that can be easily displayed
+      const userArticles = dbUserArticleData.map((article) => article.get({ plain: true }));
+
+      res.render("dashboard", { userArticles, dashboard: true, loggedIn: req.session.loggedIn });
+    }
+    catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", result: err.message });
+    }
   }
 });
 
@@ -58,56 +58,39 @@ router.get("/article/:articleId/comment", async (req, res) => {
     res.redirect("/login");
   }
   else {
-    var article;
-
-    if (req.params.articleId == 0) {
-      article = {
-        id: "0",
-        title: "A Great Title",
-        content: "What a wonderful piece of content this is! It might be the greatest content of all time.",
-        metadata: {
-          user: "A Great User",
-          date: new Date()
-        },
-        comments: [
+    try {
+      // get an Article
+      const dbArticleData = await Article.findOne({
+        include: [
           {
-            content: "This article sucks!",
-            username: "TheWorst",
-            date: new Date()
+            model: User,
+            attributes: ["username"]
           },
           {
-            content: "This article makes no sense. DUMB IDIOT!",
-            username: "NotGood",
-            date: new Date()
+            model: Comment,
+            attributes: ["content", "createdAt"],
+            include: [
+              {
+                model: User,
+                attributes: ["username"]
+              }
+            ]
           }
-        ]
-      };
-    }
-    else if (req.params.articleId == 1) {
-      article = {
-        id: "1",
-        title: "A Great Title 2",
-        content: "What a wonderful piece of content this is! It might be the second greatest content of all time.",
-        metadata: {
-          user: "A Great User 2",
-          date: new Date()
-        },
-        comments: [
-          {
-            content: "This article sucks!",
-            username: "TheWorst",
-            date: new Date()
-          },
-          {
-            content: "This article makes no sense. DUMB IDIOT!",
-            username: "NotGood",
-            date: new Date()
-          }
-        ]
-      };
-    }
+        ],
+        where: {
+          id: req.params.articleId
+        }
+      });
 
-    res.render("comment", { article, loggedIn: req.session.loggedIn });
+      // format dbUserArticleData into something that can be easily displayed
+      const article = dbArticleData.get({ plain: true });
+
+      res.render("comment", { article, loggedIn: req.session.loggedIn });
+    }
+    catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", result: err.message });
+    }
   }
 });
 

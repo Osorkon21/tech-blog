@@ -5,7 +5,7 @@
     </div>
 
     <div class="article-metadata">
-      {{format_metadata article.metadata}}
+      {{format_metadata article.User.username article.createdAt}}
     </div>
   </div>
 
@@ -14,10 +14,10 @@
   </div>
 </div>
 
-{{#each article.comments as |comment|}}
+{{#each article.Comments as |comment|}}
   <div class="old-comment mt-2 mx-4">
     <p class="ms-2 mt-3">{{content}}</p>
-    <p class="ms-4">- {{username}}, {{format_date date}}</p>
+    <p class="ms-4">- {{User.username}}, {{format_date createdAt}}</p>
   </div>
 {{/each}}
 

@@ -4,7 +4,7 @@ module.exports = {
     return createdAt.toLocaleDateString();
   },
   format_metadata: (username, dateString) => {
-    const updatedAt = new Date(dateString);
-    return `Posted by ${username} on ${updatedAt.toLocaleDateString()}`;
+    const createdAt = new Date(dateString);
+    return `Posted by ${username} on ${createdAt.toLocaleDateString()}`;
   }
 };

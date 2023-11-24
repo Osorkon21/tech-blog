@@ -3,10 +3,10 @@
 </div>
 
 <div class="article-container mx-4">
-  {{#each userArticles.articles as |article|}}
+  {{#each userArticles as |article|}}
     <button class="btn btn-secondary mt-3 w-100 d-flex justify-content-between" data-id="{{id}}">
       <span data-id="{{id}}">{{title}}</span>
-      <span data-id="{{id}}">{{format_date date}}</span>
+      <span data-id="{{id}}">{{format_date createdAt}}</span>
     </button>
   {{/each}}
 </div>
