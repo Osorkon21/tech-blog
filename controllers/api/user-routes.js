@@ -1,8 +1,5 @@
 const router = require('express').Router();
-
 const { User } = require('../../models');
-
-// /api/user endpoint
 
 // sign up new user
 router.post('/', async (req, res) => {
@@ -12,15 +9,17 @@ router.post('/', async (req, res) => {
       password: req.body.password,
     });
 
+    const plainData = dbUserData.get({ plain: true });
+
     req.session.loggedIn = true;
-    req.session.username = req.body.username;
+    req.session.userId = plainData.id;
 
     req.session.save(() => {
       res.status(200).json(dbUserData);
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ status: "error", result: err.message });
   }
 });
 
@@ -52,14 +51,14 @@ router.post('/login', async (req, res) => {
     const plainData = dbUserData.get({ plain: true });
 
     req.session.loggedIn = true;
-    req.session.username = plainData.username;
+    req.session.userId = plainData.id;
 
     req.session.save(() => {
       res.status(200).json({ user: plainData, message: 'You are now logged in!' });
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ status: "error", result: err.message });
   }
 });
 
