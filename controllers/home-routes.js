@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const { User, Article, Comment } = require("../models");
 
-//  /article/:articleId/comment GET
-//  /article/:articleId/edit GET
-
 // homepage route
 router.get("/", async (req, res) => {
   try {
@@ -99,24 +96,23 @@ router.get("/article/:articleId/edit", async (req, res) => {
     res.redirect("/login");
   }
   else {
-    var article;
+    try {
+      // get an Article
+      const dbArticleData = await Article.findOne({
+        where: {
+          id: req.params.articleId
+        }
+      });
 
-    if (req.params.articleId == 0) {
-      article = {
-        id: "0",
-        title: "A Great Title",
-        content: "What a wonderful piece of content this is! It might be the greatest content of all time."
-      };
-    }
-    else if (req.params.articleId == 1) {
-      article = {
-        id: "1",
-        title: "A Great Title 2",
-        content: "What a wonderful piece of content this is! It might be the second greatest content of all time."
-      };
-    }
+      // format dbArticleData into something that can be easily displayed
+      const article = dbArticleData.get({ plain: true });
 
-    res.render("editpost", { article, dashboard: true, loggedIn: req.session.loggedIn });
+      res.render("editpost", { article, dashboard: true, loggedIn: req.session.loggedIn });
+    }
+    catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", result: err.message });
+    }
   }
 });
 
