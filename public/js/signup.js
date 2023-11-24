@@ -12,8 +12,6 @@ const signupFormHandler = async (e) => {
     });
 
     if (response.ok) {
-
-      // go to user dashboard after signing up
       document.location.replace('/dashboard');
     } else {
       alert('Failed to sign up.');

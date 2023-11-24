@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Article } = require("../../models");
 
+// create new Article
 router.post("/", async (req, res) => {
   try {
     const result = await Article.create(
@@ -19,6 +20,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// modify existing Article
 router.put("/:articleId", async (req, res) => {
   try {
     const result = await Article.update(
@@ -41,6 +43,7 @@ router.put("/:articleId", async (req, res) => {
   }
 });
 
+// delete existing Article
 router.delete("/:articleId", async (req, res) => {
   try {
     const result = await Article.destroy({

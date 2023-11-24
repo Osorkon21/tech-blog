@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 
 class Article extends Model { };
 
+// initialize Article Model
 Article.init(
   {
     id: {
@@ -19,6 +20,8 @@ Article.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+
+    // foreign key for User
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

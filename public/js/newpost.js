@@ -12,8 +12,6 @@ async function newpostHandler(e) {
     });
 
     if (response.ok) {
-
-      // go to user dashboard after signing up
       document.location.href = '/dashboard';
     } else {
       alert('Failed to sign up.');

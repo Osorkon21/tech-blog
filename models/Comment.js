@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 
 class Comment extends Model { };
 
+// initialize Comment Model
 Comment.init(
   {
     id: {
@@ -15,6 +16,8 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+
+    // foreign key for User
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -23,6 +26,8 @@ Comment.init(
         key: 'id'
       }
     },
+
+    // foreign key for Article
     article_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

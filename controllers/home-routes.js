@@ -4,6 +4,7 @@ const { User, Article, Comment } = require("../models");
 // homepage route
 router.get("/", async (req, res) => {
   try {
+
     // get all Articles
     const dbArticleData = await Article.findAll({
       include: [
@@ -25,12 +26,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+// dashboard route
 router.get("/dashboard", async (req, res) => {
+
+  // redirect to login page if necessary
   if (!req.session.loggedIn) {
     res.redirect("/login");
   }
   else {
     try {
+
       // get all User Articles
       const dbUserArticleData = await Article.findAll({
         where: {
@@ -50,53 +55,54 @@ router.get("/dashboard", async (req, res) => {
   }
 });
 
+// view Comments route
 router.get("/article/:articleId/comment", async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect("/login");
-  }
-  else {
-    try {
-      // get an Article
-      const dbArticleData = await Article.findOne({
-        include: [
-          {
-            model: User,
-            attributes: ["username"]
-          },
-          {
-            model: Comment,
-            attributes: ["content", "createdAt"],
-            include: [
-              {
-                model: User,
-                attributes: ["username"]
-              }
-            ]
-          }
-        ],
-        where: {
-          id: req.params.articleId
+  try {
+
+    // get an Article
+    const dbArticleData = await Article.findOne({
+      include: [
+        {
+          model: User,
+          attributes: ["username"]
+        },
+        {
+          model: Comment,
+          attributes: ["content", "createdAt"],
+          include: [
+            {
+              model: User,
+              attributes: ["username"]
+            }
+          ]
         }
-      });
+      ],
+      where: {
+        id: req.params.articleId
+      }
+    });
 
-      // format dbUserArticleData into something that can be easily displayed
-      const article = dbArticleData.get({ plain: true });
+    // format dbUserArticleData into something that can be easily displayed
+    const article = dbArticleData.get({ plain: true });
 
-      res.render("comment", { article, loggedIn: req.session.loggedIn });
-    }
-    catch (err) {
-      console.error(err);
-      res.status(500).json({ status: "error", result: err.message });
-    }
+    res.render("comment", { article, loggedIn: req.session.loggedIn });
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ status: "error", result: err.message });
   }
 });
 
+// edit Article route
 router.get("/article/:articleId/edit", async (req, res) => {
+
+  // redirect to login page if necessary
   if (!req.session.loggedIn) {
     res.redirect("/login");
   }
   else {
     try {
+
       // get an Article
       const dbArticleData = await Article.findOne({
         where: {

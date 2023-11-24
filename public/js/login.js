@@ -12,8 +12,6 @@ const onBtnClick = async (e) => {
     });
 
     if (response.ok) {
-
-      // go to user dashboard after logging in
       document.location.replace('/dashboard');
     } else {
       alert('Failed to log in - incorrect username or password.');

@@ -4,6 +4,8 @@ const { User } = require('../../models');
 // sign up new user
 router.post('/', async (req, res) => {
   try {
+
+    // create new User
     const dbUserData = await User.create({
       username: req.body.username,
       password: req.body.password,
@@ -11,9 +13,11 @@ router.post('/', async (req, res) => {
 
     const plainData = dbUserData.get({ plain: true });
 
+    // add relevant data to the Session object
     req.session.loggedIn = true;
     req.session.userId = plainData.id;
 
+    // save Session object
     req.session.save(() => {
       res.status(200).json(dbUserData);
     });
@@ -23,15 +27,18 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Login
+// login
 router.post('/login', async (req, res) => {
   try {
+
+    // find a User
     const dbUserData = await User.findOne({
       where: {
         username: req.body.username,
       }
     });
 
+    // check if User exists
     if (!dbUserData) {
       res
         .status(400)
@@ -39,6 +46,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    // check if password is correct
     const validPassword = dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -50,9 +58,11 @@ router.post('/login', async (req, res) => {
 
     const plainData = dbUserData.get({ plain: true });
 
+    // add relevant data to the Session object
     req.session.loggedIn = true;
     req.session.userId = plainData.id;
 
+    // save Session object
     req.session.save(() => {
       res.status(200).json({ user: plainData, message: 'You are now logged in!' });
     });
@@ -62,9 +72,11 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Logout
+// logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
+
+    // delete current Session object
     req.session.destroy(() => {
       res.status(204).end();
     });

@@ -16,8 +16,6 @@ async function onBtnSubmit(e) {
       });
 
       if (response.ok) {
-
-        // go to user dashboard after updating post
         document.location.href = '/dashboard';
       }
       else {
@@ -27,6 +25,8 @@ async function onBtnSubmit(e) {
     else
       alert("Title and Content are required fields.");
   }
+
+  // "delete-btn" was clicked
   else {
     const response = await fetch(`/api/article/${articleId}`, {
       method: 'DELETE',
@@ -34,8 +34,6 @@ async function onBtnSubmit(e) {
     });
 
     if (response.ok) {
-
-      // go to user dashboard after deleting post
       document.location.replace('/dashboard');
     }
     else {

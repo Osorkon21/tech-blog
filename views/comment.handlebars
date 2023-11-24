@@ -21,21 +21,25 @@
   </div>
 {{/each}}
 
-<div class="new-comment mx-4 mt-4">
-  <div class="top-bar p-2">
-    <div class="comment-title fw-bold fs-3">Add Your Comment</div>
+{{!-- if user is not logged in, they can't post comments --}}
+{{#if loggedIn}}
+  <div class="new-comment mx-4 mt-4">
+    <div class="top-bar p-2">
+      <div class="comment-title fw-bold fs-3">Add Your Comment</div>
+    </div>
+
+    <div class="comment-container p-3">
+      <textarea class="form-control comment-text" id="{{article.id}}" rows="3"
+        placeholder="your comment here"></textarea>
+    </div>
+
+    <div class="button-div px-3">
+      <button class="btn btn-success w-100" id="submit-btn">Add Comment!</button>
+
+      <a class="btn btn-danger my-2 w-100" href="/">Cancel</a>
+    </div>
+
   </div>
 
-  <div class="comment-container p-3">
-    <textarea class="form-control comment-text" id="{{article.id}}" rows="3" placeholder="your comment here"></textarea>
-  </div>
-
-  <div class="button-div px-3">
-    <button class="btn btn-success w-100" id="submit-btn">Add Comment!</button>
-
-    <a class="btn btn-danger my-2 w-100" href="/">Cancel</a>
-  </div>
-
-</div>
-
-<script src="/js/comment.js"></script>
+  <script src="/js/comment.js"></script>
+{{/if}}
